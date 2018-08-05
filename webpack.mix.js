@@ -50,8 +50,9 @@ mix.postCss(`${cfg.paths.src}/css/main.css`, `${cfg.paths.build}/css`, [
 // a couple of workarounds for some small issues:
 // 1: setPublicPath is required otherwise the build
 //    script stalls with message '95% emitting'
-// 2: A mix-manifest.json is generated which is used
-//    by Laravel, but we don't need it, so delete it
+// 2: A mix-manifest.json file is generated which 
+//    is used by Laravel, but we don't need it, 
+//    so just delete it
 mix.setPublicPath(cfg.paths.build).then(() => {
     fs.unlink(`${cfg.paths.build}/mix-manifest.json`);
 })
