@@ -7,7 +7,6 @@ import camelCase from 'lodash/camelCase'
 // then prefix the filename with a '_'
 // taken from https://vuejs.org/v2/guide/components-registration.html#Automatic-Global-Registration-of-Base-Components
 const requireComponent = require.context('./components', true, /(?:^|\/)(?!_)\w+\.vue$/);
-
 // For each matching file name...
 requireComponent.keys().forEach(fileName => {
   // Get the component config
