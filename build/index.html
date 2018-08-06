@@ -8,7 +8,11 @@
 </head>
 <body>
     <div id="app">
-        <button is="my-button">Some Text</button>
+        <script type="application/json" id="data1">{"org":10,"items":["one","two"]}</script>
+        <script type="application/json" id="data2">{"org":11,"items":["three","four"]}</script>
+        <embedded-json-provider :src="{ d1:'data1', d2:'data2' }">
+            <my-component slot-scope="json" :my-prop="json.d1">Some Text</my-component>
+        </embedded-json-provider>
     </div>
     <script src="js/manifest.js" defer></script>
     <script src="js/vendor.js" defer></script>
