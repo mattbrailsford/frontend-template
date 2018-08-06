@@ -14,7 +14,7 @@ export default {
           }, {});
         } else {
       		return Object.keys(self.src).reduce((map, key) => {
-          	map[key] = self.getJson(self.src[key]);
+          	map[self.src[key]] = self.getJson(key);
             return map;
           }, {});
         }
