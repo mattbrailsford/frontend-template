@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "EmbeddedJsonProvider",
+  name: 'EmbeddedJsonProvider',
   props: ['src'],
   computed: {
     json() {
