@@ -45,8 +45,8 @@ mix.postCss(`${cfg.paths.src}/css/main.css`, `${cfg.paths.build}/css`, [
 ]);
 
 // Copy build files to Umbraco folder
-mix.copyDirectory(`${cfg.paths.build}/js`, `${cfg.paths.umbraco}/js`)
-  .copyDirectory(`${cfg.paths.build}/css`, `${cfg.paths.umbraco}/css`);
+// mix.copyDirectory(`${cfg.paths.build}/js`, `${cfg.paths.umbraco}/js`)
+//   .copyDirectory(`${cfg.paths.build}/css`, `${cfg.paths.umbraco}/css`);
 
 // ================================================
 // LARAVEL QUIRKS - DON'T DELETE
