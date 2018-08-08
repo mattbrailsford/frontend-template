@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <div id="app">
+    <div id="page">
         <script type="application/json" id="data">{"org":10,"items":["one","two"]}</script>
         <embedded-json-provider :src=" { 'd1' : 'data' }">
             <my-component slot-scope="json" :my-prop="json.d1">Some Text</my-component>

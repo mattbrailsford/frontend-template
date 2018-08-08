@@ -20,5 +20,5 @@ requireComponent.keys().forEach(fileName => {
 // and make our components work, but for the most part,
 // it shouldn't really do anything
 window.vm = new Vue({
-  el: '#app'
+  el: '#page'
 })
