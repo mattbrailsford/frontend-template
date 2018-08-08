@@ -1,6 +1,4 @@
 import Vue from 'vue'
-import upperFirst from 'lodash/upperFirst'
-import camelCase from 'lodash/camelCase'
 
 // Globally register all components by default as we won't know if / when a component
 // will be used as it'll be decided by the CMS. If you don't want it globally registerd
@@ -11,10 +9,10 @@ const requireComponent = require.context('./components', true, /(?:^|\/)(?!_)\w+
 requireComponent.keys().forEach(fileName => {
   // Get the component config
   const componentConfig = requireComponent(fileName)
-  // Get the PascalCase version of the component name
-  const componentName = upperFirst(camelCase(fileName.replace(/\.\w+$/, '')))
-  // Globally register the component
-  Vue.component(componentName, componentConfig.default || componentConfig)
+  // Get the default component from the config
+  const component = componentConfig.default || componentConfig;
+  // Globally register the component using the component name from the component config
+  Vue.component(component.name, component)
 })
 
 // Start the vue app

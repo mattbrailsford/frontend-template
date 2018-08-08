@@ -8,6 +8,7 @@
 
 <script>
 export default {
+    name: 'MyComponent',
     props: ['myProp']
 }
 </script>

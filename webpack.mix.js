@@ -28,7 +28,9 @@ mix.webpackConfig({
 
 // Process JS files including VUE
 mix.js(`${cfg.paths.src}/js/main.js`, `${cfg.paths.build}/js`)
-    .extract(['vue', 'lodash'])
+    .extract([
+        'vue'
+    ])
     .sourceMaps();
 
 // Process CSS files
