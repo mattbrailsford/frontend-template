@@ -15,6 +15,7 @@
     "cross-env": "^5.2.0",
     "fs": "0.0.1-security",
     "laravel-mix": "^2.1.11",
+    "laravel-mix-purgecss": "^2.2.3",
     "postcss-import": "^11.1.0",
     "postcss-preset-env": "^5.3.0",
     "tailwindcss": "^0.6.4"

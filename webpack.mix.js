@@ -1,10 +1,13 @@
 // Imports
 let mix = require('laravel-mix');
-let cleanWebpack = require('clean-webpack-plugin');
 let postimport = require('postcss-import');
 let tailwindcss = require('tailwindcss');
 let presetEnv = require('postcss-preset-env');
 let fs = require('fs');
+
+let CleanWebpackPlugin = require('clean-webpack-plugin');
+
+require('laravel-mix-purgecss');
 
 // Config
 const cfg = {
@@ -12,7 +15,7 @@ const cfg = {
         root: '.',
         src: './src',
         build: './build',
-        umbraco: './umbraco'
+        umbraco: '../MyProject.Web'
     }
 }
 
@@ -22,7 +25,7 @@ mix.disableNotifications();
 // Cleanup previous builds
 mix.webpackConfig({
     plugins: [
-        new cleanWebpack([`${cfg.paths.build}/js`, `${cfg.paths.build}/css`])
+        new CleanWebpackPlugin([`${cfg.paths.build}/js`, `${cfg.paths.build}/css`])
     ]
 });
 
@@ -44,7 +47,15 @@ mix.postCss(`${cfg.paths.src}/css/main.css`, `${cfg.paths.build}/css`, [
         },
         browsers: 'last 2 versions'
     })
-]);
+])
+.purgeCss({
+    enabled: mix.inProduction(),
+    folders: [
+        `${cfg.paths.src}/js/`,
+        `${cfg.paths.umbraco}/views/`
+    ],
+    extensions: ['html', 'cshtml', 'js', 'vue']
+});
 
 // Copy build files to Umbraco folder
 // mix.copyDirectory(`${cfg.paths.build}/js`, `${cfg.paths.umbraco}/js`)
