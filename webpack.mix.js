@@ -22,11 +22,20 @@ const cfg = {
 // Don't bother raising toast notifications
 mix.disableNotifications();
 
-// Cleanup previous builds
+// Additional webpack configuration
 mix.webpackConfig({
-    plugins: [
+
+    // Cleanup previous builds
+    plugins: [ 
         new CleanWebpackPlugin([`${cfg.paths.build}/js`, `${cfg.paths.build}/css`])
-    ]
+    ],
+
+    // Configure chunking for async components
+    output: { 
+        publicPath: '/',
+        chunkFilename: 'js/[name].[chunkhash].js',
+    }
+
 });
 
 // Process JS files including VUE

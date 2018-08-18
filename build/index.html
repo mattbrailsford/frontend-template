@@ -10,7 +10,10 @@
     <div id="page">
         <script type="application/json" id="data">{"org":10,"items":["one","two"]}</script>
         <embedded-json-provider :src=" { 'd1' : 'data' }">
-            <my-component slot-scope="json" :my-prop="json.d1">Some Text</my-component>
+            <div slot-scope="json">
+                <div is="my-component" :my-prop="json.d1">Some Text</div>
+                <div is="my-async-component" :my-prop="json.d1">Some Text2</div>
+            </div>
         </embedded-json-provider>
     </div>
     <script src="js/manifest.js" defer></script>
