@@ -1,11 +1,10 @@
 import Vue from 'vue'
 
-// Manually declare any async components
-// Async components will be loaded dynamically when first requested
-// which may help with performance. You should only really do this though
-// for larger more complex components or ones that are only used on a
-// single page as loading all components async would cause perf issues
-// of their own.
+// Manually declare any async components (https://vuejs.org/v2/guide/components-dynamic-async.html#Async-Components)
+// Async components will be auto loaded and cached when first requested. 
+// You should only really do this for larger more complex components or 
+// ones that are only used sparingly as loading all components async would 
+// could negate the benefits by making too many requests.
 // Based on https://nayzawoo.github.io/blog/2018/02/26/Laravel-Mix-Setup-For-Vue-Async-Components/
 Vue.component('MyAsyncComponent', () => import('./components/_MyAsyncComponent.vue'))
 
