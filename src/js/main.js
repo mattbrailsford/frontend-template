@@ -6,6 +6,7 @@ import Vue from 'vue'
 // for larger more complex components or ones that are only used on a
 // single page as loading all components async would cause perf issues
 // of their own.
+// Based on https://nayzawoo.github.io/blog/2018/02/26/Laravel-Mix-Setup-For-Vue-Async-Components/
 Vue.component('MyAsyncComponent', () => import('./components/_MyAsyncComponent.vue'))
 
 // Globally register all public components by default as we won't know if / when a component
