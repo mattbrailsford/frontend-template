@@ -4,7 +4,7 @@ let tailwindcss = require('tailwindcss');
 let postimport = require('postcss-import');
 let url = require("postcss-url")
 let presetEnv = require('postcss-preset-env');
-let fs = require('fs');
+let fs = require('fs-extra');
 
 let CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -18,7 +18,7 @@ const cfg = {
         build: './build',
         umbraco: '../MyProject.Web'
     }
-}
+};
 
 // Don't bother raising toast notifications
 mix.disableNotifications();
@@ -69,9 +69,13 @@ mix.postCss(`${cfg.paths.src}/css/main.css`, `${cfg.paths.build}/css`, [
 });
 
 // Copy build files to Umbraco folder
-// mix.copyDirectory(`${cfg.paths.build}/js`, `${cfg.paths.umbraco}/js`)
-//   .copyDirectory(`${cfg.paths.build}/css`, `${cfg.paths.umbraco}/css`)
-//   .copyDirectory(`${cfg.paths.build}/images`, `${cfg.paths.umbraco}/images`);
+mix.then(() => {
+    fs.copySync(cfg.paths.build, cfg.paths.umbraco, {
+        filter(src) {
+            return !src.match(/(?:mix-manifest|index.html)/gi);
+        }
+    });
+});
 
 // ================================================
 // LARAVEL QUIRKS - DON'T DELETE
@@ -84,5 +88,5 @@ mix.postCss(`${cfg.paths.src}/css/main.css`, `${cfg.paths.build}/css`, [
 //    is used by Laravel, but we don't need it, 
 //    so just delete it
 mix.setPublicPath(cfg.paths.build).then(() => {
-    fs.unlink(`${cfg.paths.build}/mix-manifest.json`);
-})
+    fs.removeSync(`${cfg.paths.build}/mix-manifest.json`);
+});
