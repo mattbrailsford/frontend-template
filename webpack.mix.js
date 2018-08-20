@@ -1,7 +1,8 @@
 // Imports
 let mix = require('laravel-mix');
-let postimport = require('postcss-import');
 let tailwindcss = require('tailwindcss');
+let postimport = require('postcss-import');
+let url = require("postcss-url")
 let presetEnv = require('postcss-preset-env');
 let fs = require('fs');
 
@@ -27,13 +28,13 @@ mix.webpackConfig({
 
     // Cleanup previous builds
     plugins: [ 
-        new CleanWebpackPlugin([`${cfg.paths.build}/js`, `${cfg.paths.build}/css`])
+        new CleanWebpackPlugin([`${cfg.paths.build}/js`, `${cfg.paths.build}/css`, `${cfg.paths.build}/images`])
     ],
 
     // Configure chunking for async components
     output: { 
         publicPath: '/',
-        chunkFilename: 'js/[name].[chunkhash].js',
+        chunkFilename: 'js/[name].js?cb=[chunkhash]',
     }
 
 });
@@ -48,6 +49,7 @@ mix.js(`${cfg.paths.src}/js/main.js`, `${cfg.paths.build}/js`)
 // Process CSS files
 mix.postCss(`${cfg.paths.src}/css/main.css`, `${cfg.paths.build}/css`, [
     postimport({ root: `${cfg.paths.src}/css/*.css` }),
+    url({ url: 'rebase' }),
     tailwindcss(`${cfg.paths.root}/tailwind.js`),
     presetEnv({
         stage: 2,
@@ -68,7 +70,8 @@ mix.postCss(`${cfg.paths.src}/css/main.css`, `${cfg.paths.build}/css`, [
 
 // Copy build files to Umbraco folder
 // mix.copyDirectory(`${cfg.paths.build}/js`, `${cfg.paths.umbraco}/js`)
-//   .copyDirectory(`${cfg.paths.build}/css`, `${cfg.paths.umbraco}/css`);
+//   .copyDirectory(`${cfg.paths.build}/css`, `${cfg.paths.umbraco}/css`)
+//   .copyDirectory(`${cfg.paths.build}/images`, `${cfg.paths.umbraco}/images`);
 
 // ================================================
 // LARAVEL QUIRKS - DON'T DELETE
