@@ -1,6 +1,9 @@
 # Frontend Template
 A repository to experiment with a front end setup for Umbraco / CMS driven sites using VueJS + Tailwind
 
+## Lightweight jQuery alternatives
+* [cash](https://github.com/kenwheeler/cash)
+
 ## Useful non-jquery libs
 * [axios](https://github.com/axios/axios)
 * [Image Focus](https://github.com/third774/image-focus/tree/master/src/lib)
